@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>新建文章</h1>
+      <div class="form-group">
+        <input type="text" class="form-control" v-model="title" placeholder="输入文字标题">
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" rows="3" v-model="content" placeholder="输入文章内容"></textarea>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-default" v-on:click="submit">提交</button>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+var vm = new Vue({
+  el: '#app',
+  data: {
+    title: '',
+    content: ''
+  },
+  methods: {
+    submit () {
+    axios.post('/api/posts',
+      {
+        title: vm.title,
+        content: vm.content
+      })
+      .then(function(response) {
+        alert(JSON.stringify(response.data));
+      })
+      .catch(function(err) {
+        alert(err);
+      })
+    }
+  }
+});
+</script>

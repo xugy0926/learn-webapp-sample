@@ -25,9 +25,7 @@ router.post('/posts', function (req, res, next) {
   var title = req.body.title;
   var content = req.body.content;
 
-  console.log('lllll');
   var post = new PostModel();
-  console.log(post);
   post.title = title;
   post.content = content;
   post.save(function (err) {

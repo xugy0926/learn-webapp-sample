@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1><%= title %></h1>
+      <p>Welcome to <%= title %></p>
+
+      <div v-for="item in postsList">
+        <a v-bind:href="item.url">{{ item.title }}</a>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      postsList: []
+    },
+    methods: {
+      fetchData () {
+        axios.get('/api/posts')
+          .then(function(response) {
+            vm.postsList = response.data.postsList;
+            vm.postsList.forEach((element) => element.url = '/posts/show?id=' + element._id);
+          })
+      }
+    }
+  });
+  
+  vm.fetchData();
+</script>
