@@ -20,8 +20,7 @@ router.get('/posts', function (req, res, next) {
 });
 
 /* POST posts */
-router.post('/posts', function (req, res, next) {
-  console.log(req.body);
+router.post('/posts/create', function (req, res, next) {
   var title = req.body.title;
   var content = req.body.content;
 

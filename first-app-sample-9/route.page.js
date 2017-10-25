@@ -12,7 +12,7 @@ router.get('/posts', function(req, res, next) {
 res.render('posts', { title: 'posts'} );
 });
 
-/* GET posts edit page. */
+/* GET posts create page. */
 router.get('/posts/create', function(req, res, next) {
   res.render('create');
 });
