@@ -19,8 +19,10 @@ router.get('/posts/create', function(req, res, next) {
 });
 
 /* GET posts edit page. */
-router.get('/posts/edit', function(req, res, next) {
-  res.render('edit', { id: req.query.id });
+router.get('/posts/edit', function (req, res, next) {
+  var id = req.query.id;
+
+  res.render('edit', { id });
 });
 
 /* GET posts show page. */
