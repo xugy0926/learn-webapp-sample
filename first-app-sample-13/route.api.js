@@ -12,25 +12,22 @@ router.get('/posts', function(req, res, next) {
   PostModel.find({}, {}, function(err, posts) {
     if (err) {
       res.json({ success: false });
-      return;
+    } else {
+      res.json({ success: true, postsList: posts });
     }
-
-    res.json({ success: true, postsList: posts });
-    return;
   });
 });
 
 /* GET one post */
-router.get('/posts/one', function (req, res, next) {
+router.get('/posts/one', function(req, res, next) {
   var id = req.query.id;
 
-  PostModel.findOne({_id: id}, function(err, post) {
+  PostModel.findOne({ _id: id }, function(err, post) {
     if (err) {
       res.json({ success: false });
-      return;
+    } else {
+      res.json({ success: true, post });
     }
-
-    res.json({ success: true, post });
   });
 });
 
@@ -44,11 +41,10 @@ router.post('/posts/create', function(req, res, next) {
   post.content = content;
   post.save(function(err) {
     if (err) {
-      console.log(err);
       res.json({ success: false });
-      return;
+    } else {
+      res.json({ success: true });
     }
-    res.json({ success: true });
   });
 });
 

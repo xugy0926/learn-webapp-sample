@@ -1,0 +1,41 @@
+<div>
+  <!-- Split button -->
+  <div class="btn-group pull-right">
+    <button type="button" class="btn btn-default">操作</button>
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="caret"></span>
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="/posts/create">新建</a></li>
+    </ul>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>  
+    <ul class="list-group" v-for="item in postsList">
+      <li class="list-group-item">
+        <a v-bind:href="item.url">{{ item.title }}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      postsList: []
+    },
+    methods: {
+      fetchData () {
+        axios.get('/api/posts')
+          .then(function(response) {
+            vm.postsList = response.data.postsList;
+            vm.postsList.forEach((element) => element.url = '/posts/show?id=' + element._id);
+          })
+      }
+    }
+  });
+  
+  vm.fetchData();
+</script>

@@ -4,12 +4,12 @@ var PostModel = require('./models/post');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express' });
 });
 
 /* GET posts page. */
 router.get('/posts', function(req, res, next) {
-res.render('posts', { title: 'posts'} );
+  res.render('posts', { title: 'posts' });
 });
 
 /* GET posts create page. */
@@ -18,11 +18,11 @@ router.get('/posts/create', function(req, res, next) {
 });
 
 /* GET posts show page. */
-router.get('/posts/show', function (req, res, next) {
+router.get('/posts/show', function(req, res, next) {
   var id = req.query.id;
 
-  PostModel.findOne({_id: id}, function (err, post) {
-    res.render('show', {post});
+  PostModel.findOne({ _id: id }, function(err, post) {
+    res.render('show', { post });
   });
 });
 
