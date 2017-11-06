@@ -19,8 +19,8 @@ router.get('/posts', function(req, res, next) {
 });
 
 /* GET one post */
-router.get('/posts/one', function(req, res, next) {
-  var id = req.query.id;
+router.get('/posts/:id', function(req, res, next) {
+  var id = req.params.id;
 
   PostModel.findOne({ _id: id }, function(err, post) {
     if (err) {
@@ -32,7 +32,7 @@ router.get('/posts/one', function(req, res, next) {
 });
 
 /* POST create post */
-router.post('/posts/create', function(req, res, next) {
+router.post('/posts', function(req, res, next) {
   var title = req.body.title;
   var content = req.body.content;
 
@@ -49,8 +49,8 @@ router.post('/posts/create', function(req, res, next) {
 });
 
 /* PATCH edit post */
-router.post('/posts/edit', function(req, res, next) {
-  var id = req.body.id;
+router.patch('/posts/:id', function(req, res, next) {
+  var id = req.params.id;
   var title = req.body.title;
   var content = req.body.content;
 

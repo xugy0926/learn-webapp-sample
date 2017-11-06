@@ -48,7 +48,7 @@ router.post('/posts/create', function(req, res, next) {
   });
 });
 
-/* PATCH edit post */
+/* POST edit post */
 router.post('/posts/edit', function(req, res, next) {
   var id = req.body.id;
   var title = req.body.title;
