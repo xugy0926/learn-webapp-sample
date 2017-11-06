@@ -20,7 +20,7 @@ var vm = new Vue({
     content: ''
   },
   created () {
-    axios.get('/api/posts/' + postId)
+    axios.get('/api/v1/posts/' + postId)
       .then(function(response) {
         vm.title = response.data.post.title;
         vm.content = response.data.post.content;
@@ -31,7 +31,7 @@ var vm = new Vue({
   },
   methods: {
     submit () {
-    axios.patch('/api/posts/' + postId,
+    axios.patch('/api/v1/posts/' + postId,
       {
         title: vm.title,
         content: vm.content

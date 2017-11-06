@@ -20,7 +20,7 @@ var vm = new Vue({
   },
   methods: {
     submit () {
-    axios.post('/api/posts',
+    axios.post('/api/v1/posts',
       {
         title: vm.title,
         content: vm.content
