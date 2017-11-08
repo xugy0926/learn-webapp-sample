@@ -1,0 +1,17 @@
+<div>
+  <!-- Split button -->
+  <div class="btn-group pull-right">
+    <button type="button" class="btn btn-default">操作</button>
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="caret"></span>
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="/posts/edit?id=<%= post._id %>">编辑</a></li>
+    </ul>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <h1><%= post.title %></h1>
+    <div><%- post.mkContent %></div>
+  </div>
+</div>

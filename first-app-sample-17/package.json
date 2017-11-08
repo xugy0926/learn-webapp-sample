@@ -1,0 +1,23 @@
+{
+  "name": "first-app-sample-17",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "auto-start": "./node_modules/.bin/node-supervisor node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "ejs": "~2.5.6",
+    "express": "~4.15.2",
+    "express-ejs-layouts": "^2.3.1",
+    "marked": "^0.3.6",
+    "mongoose": "^4.12.1",
+    "morgan": "~1.8.1",
+    "serve-favicon": "~2.4.2",
+    "supervisor": "^0.12.0"
+  }
+}
