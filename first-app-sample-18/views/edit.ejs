@@ -1,7 +1,5 @@
 <div class="col-md-8 col-md-offset-2">
-  <% if(currentUser) { %> 
-  <h1 v-if="">编辑文章</h1>
-  <% } %>
+  <h1>编辑文章</h1>
   <div class="form-group">
     <input type="text" class="form-control" v-model="title" placeholder="输入文字标题">
   </div>
@@ -13,7 +11,6 @@
   </div>
 </div>
 <script>
-//TODO: how to check the author
 var postId = '<%= id %>';
 
 var vm = new Vue({

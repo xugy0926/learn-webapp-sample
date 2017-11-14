@@ -36,14 +36,14 @@ router.get('/posts/:id', function(req, res, next) {
 });
 
 /* POST create post */
-router.post('/posts', function(req, res, next) {
+router.post('/posts', function (req, res, next) {
   var title = req.body.title;
   var content = req.body.content;
-
+  
   var post = new PostModel();
   post.title = title;
   post.content = content;
-  post.authorId = req.locals.currentUser._id;
+  post.authorId = res.locals.currentUser._id;
   post.save(function(err, doc) {
     if (err) {
       errorHandle(err, next);
