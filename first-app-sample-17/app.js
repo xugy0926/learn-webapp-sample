@@ -8,6 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var config = require('./config');
 var auth = require('./middlewares/auth');
 var api = require('./route.api');
 var page = require('./route.page');
@@ -24,7 +25,7 @@ app.use(expressLayouts);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser('cookie_name_01'));
+app.use(cookieParser(config.cookieName));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(auth.authUser);

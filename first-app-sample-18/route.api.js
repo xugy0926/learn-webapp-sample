@@ -63,7 +63,7 @@ router.patch('/posts/:id', function(req, res, next) {
     if (err) {
       errorHandle(err, next);
     } else {
-      res.json({});
+      res.end();
     }
   });
 });
@@ -85,7 +85,7 @@ router.post('/signup', function(req, res, next) {
     if (err) {
       errorHandle(err, next);
     } else {
-      res.json({});
+      res.end();
     }
   });
 });
@@ -104,16 +104,16 @@ router.post('/signin', function(req, res, next) {
         return errorHandle(new Error('密码不对'), next);
       }
 
-      var authToken = `${user._id}$$$$`; // 以后可能会存储更多信息，用 $$$$ 来分隔
+      var authToken = user._id;
       var opts = {
         path: '/',
-        maxAge: 1000 * 60 * 60 * 24 * 30,
+        maxAge: 1000 * 60 * 60 * 24 * 30, // cookie 有效期30天
         signed: true,
         httpOnly: true
       };
 
-      res.cookie(config.cookieName, authToken, opts); // cookie 有效期30天
-      res.json({}); // TODO: how to return the {}
+      res.cookie(config.cookieName, authToken, opts);
+      res.end();
     }
   });
 });

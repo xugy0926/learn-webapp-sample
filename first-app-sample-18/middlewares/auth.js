@@ -6,20 +6,14 @@ function authUser(req, res, next) {
   res.locals.currentUser = null;
 
   if (authToken) {
-    const auth = authToken.split('$$$$');
-    const userId = auth[0];
-    if (userId) {
-      UserModel.findOne({ _id: userId }, function(err, user) {
-        if (err) {
-          next();
-        } else {
-          res.locals.currentUser = user;
-          next();
-        }
-      });
-    } else {
-      next();
-    }
+    UserModel.findOne({ _id: authToken }, function(err, user) {
+      if (err) {
+        next();
+      } else {
+        res.locals.currentUser = user;
+        next();
+      }
+    });
   } else {
     next();
   }
