@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-// 关联路由/posts和post模块
+// 关联路由/posts和posts模块
 app.use('/posts', posts);
 
 // catch 404 and forward to error handler
