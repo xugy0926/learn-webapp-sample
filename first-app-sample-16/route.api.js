@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var PostModel = require('./models/post');
-var errorHandle = require('./common/errorHandle');
 
 /* GET users lists. */
 router.get('/users', function(req, res, next) {
@@ -12,7 +11,7 @@ router.get('/users', function(req, res, next) {
 router.get('/posts', function(req, res, next) {
   PostModel.find({}, {}, function(err, posts) {
     if (err) {
-      errorHandle(err, next);
+      next(err);
     } else {
       res.json({ postsList: posts });
     }
@@ -25,7 +24,7 @@ router.get('/posts/:id', function(req, res, next) {
 
   PostModel.findOne({ _id: id }, function(err, post) {
     if (err) {
-      errorHandle(err, next);
+      next(err);
     } else {
       res.json({ post });
     }
@@ -42,7 +41,7 @@ router.post('/posts', function(req, res, next) {
   post.content = content;
   post.save(function(err, doc) {
     if (err) {
-      errorHandle(err, next);
+      next(err);
     } else {
       res.json({post: doc});
     }
@@ -57,7 +56,7 @@ router.patch('/posts/:id', function(req, res, next) {
 
   PostModel.findOneAndUpdate({ _id: id }, { title, content }, function(err) {
     if (err) {
-      errorHandle(err, next);
+      next(err);
     } else {
       res.json({});
     }

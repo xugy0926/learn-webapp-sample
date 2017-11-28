@@ -1,0 +1,62 @@
+<div class="col-md-8 col-md-offset-2">
+  <h1>编辑文章</h1>
+  <div class="form-group">
+    <input type="text" class="form-control" v-model="title" placeholder="输入文字标题">
+  </div>
+  <div class="form-group">
+    <textarea class="form-control" rows="3" v-model="content" placeholder="输入文章内容"></textarea>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-default" v-on:click="submit">提交</button>
+  </div>
+</div>
+<script>
+var postId = '<%= id %>';
+
+var vm = new Vue({
+  el: '#app',
+  data: {
+    title: '',
+    content: ''
+  },
+  created () {
+    axios.get('/api/v1/posts/' + postId)
+      .then(function(response) {
+        if (response.status !== 200) {
+          throw new Error('error!');
+        }
+
+        return response.data;
+      })
+      .then(function(data) {
+        vm.title = data.post.title;
+        vm.content = data.post.content;
+      })
+      .catch(function(err) {
+        alert(err);
+      })
+  },
+  methods: {
+    submit () {
+      axios.patch('/api/v1/posts/' + postId,
+        {
+          title: vm.title,
+          content: vm.content
+        })
+        .then(function(response) {
+          if (response.status !== 200) {
+            throw new Error('error!');
+          }
+
+          return response.data;
+        })
+        .then(function(data) {
+          window.location = '/posts/show?id=' + postId
+        })
+        .catch(function(err) {
+          alert(err);
+        })
+    }
+  }
+});
+</script>

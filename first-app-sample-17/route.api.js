@@ -3,7 +3,6 @@ var express = require('express');
 var router = express.Router();
 var PostModel = require('./models/post');
 var UserModel = require('./models/user');
-var errorHandle = require('./common/errorHandle');
 var config = require('./config');
 
 /* GET users lists. */
@@ -15,7 +14,7 @@ router.get('/users', function(req, res, next) {
 router.get('/posts', function(req, res, next) {
   PostModel.find({}, {}, function(err, posts) {
     if (err) {
-      errorHandle(err, next);
+      next(err);
     } else {
       res.json({ postsList: posts });
     }
@@ -28,7 +27,7 @@ router.get('/posts/:id', function(req, res, next) {
 
   PostModel.findOne({ _id: id }, function(err, post) {
     if (err) {
-      errorHandle(err, next);
+      next(err);
     } else {
       res.json({ post });
     }
@@ -45,7 +44,7 @@ router.post('/posts', function(req, res, next) {
   post.content = content;
   post.save(function(err, doc) {
     if (err) {
-      errorHandle(err, next);
+      next(err);
     } else {
       res.json({ post: doc });
     }
@@ -60,7 +59,7 @@ router.patch('/posts/:id', function(req, res, next) {
 
   PostModel.findOneAndUpdate({ _id: id }, { title, content }, function(err) {
     if (err) {
-      errorHandle(err, next);
+      next(err);
     } else {
       res.end();
     }
@@ -74,7 +73,7 @@ router.post('/signup', function(req, res, next) {
   var rePass = req.body.rePass;
 
   if (pass !== rePass) {
-    return errorHandle(new Error('两次密码不对'), next);
+    return next(new Error('两次密码不对'));
   }
 
   var user = new UserModel();
@@ -82,7 +81,7 @@ router.post('/signup', function(req, res, next) {
   user.pass = bcrypt.hashSync(pass, 10);
   user.save(function(err) {
     if (err) {
-      errorHandle(err, next);
+      next(err);
     } else {
       res.end();
     }
@@ -96,11 +95,11 @@ router.post('/signin', function(req, res, next) {
 
   UserModel.findOne({ name }, function(err, user) {
     if (err || !user) {
-      return errorHandle(new Error('找不到用户'), next);
+      return next(new Error('找不到用户'));
     } else {
       var isOk = bcrypt.compareSync(pass, user.pass);
       if (!isOk) {
-        return errorHandle(new Error('密码不对'), next);
+        return next(new Error('密码不对'));
       }
 
       var authToken = user._id;
