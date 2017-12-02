@@ -26,10 +26,6 @@ var vm = new Vue({
           content: vm.content
         })
         .then(function(response) {
-          if (response.status !== 200) {
-            throw new Error('error!');
-          }
-
           return response.data;
         })
         .then(function(data) {
