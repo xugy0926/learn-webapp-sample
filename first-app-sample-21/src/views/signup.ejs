@@ -1,0 +1,45 @@
+<div class="col-md-4 col-md-offset-4">
+  <h1>注册</h1>
+  <div class="form-group">
+    <input type="text" class="form-control" v-model="name" placeholder="账号">
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" v-model="pass" placeholder="密码">
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" v-model="rePass" placeholder="密码">
+  </div>
+  <div class="form-group">
+    <button class="btn btn-default" v-on:click="submit">提交</button>
+  </div>
+</div>
+<script>
+
+var vm = new Vue({
+  el: '#app',
+  data: {
+    name: '',
+    pass: '',
+    rePass: ''
+  },
+  methods: {
+    submit () {
+      axios.post('/api/v1/signup',
+        {
+          name: vm.name,
+          pass: vm.pass,
+          rePass: vm.rePass
+        })
+        .then(function(response) {
+          return response.data;
+        })
+        .then(function(data) {
+          window.location = '/';
+        })
+        .catch(function(err) {
+          alert(err.response.data.error);
+        })
+    }
+  }
+});
+</script>

@@ -1,0 +1,8 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #E6CCA6 url(../images/bg.png) repeat fixed;
+}
+
+a {
+  color: #00B7FF;
+}
