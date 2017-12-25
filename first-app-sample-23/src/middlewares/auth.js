@@ -15,8 +15,8 @@ export const authUser = (req, res, next) => {
         res.end('Access token has expired', 400);
         return;
       }
-
-      res.locals.currentUser = decoded;
+       
+      req.user = res.locals.currentUser = decoded;
       return next();
     } catch (err) {
       return next();
