@@ -16,9 +16,7 @@ function authUser(req, res, next) {
         if (err) {
           next();
         } else {
-          if (user.loginname === config.admin) {
-            user.isAdmin = true;
-          }
+          user.isAdmin = user.loginname === config.admin;
 
           req.session.user = user;
           res.locals.currentUser = user;
