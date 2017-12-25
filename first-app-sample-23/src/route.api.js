@@ -103,7 +103,7 @@ router.post('/signin', function(req, res, next) {
       
       const token = jwt.encode(
         {
-          userId: user._id,
+          _id: user._id,
           name: user.name,
           isAdmin: user.loginname === config.admin ? true : false,
           exp: moment().add('days', 30).valueOf(),
