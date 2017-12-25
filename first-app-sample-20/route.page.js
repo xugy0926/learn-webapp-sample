@@ -49,6 +49,7 @@ router.get('/signin', function (req, res, next) {
 
 /* GET signout */
 router.get('/signout', function (req, res, next) {
+  req.session.user = null;
   res.clearCookie(config.cookieName, { path: '/' });
   res.redirect('/');
 });
