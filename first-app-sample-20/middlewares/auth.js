@@ -16,6 +16,7 @@ function authUser(req, res, next) {
         if (err) {
           next();
         } else {
+          user = user.toObject();
           user.isAdmin = user.loginname === config.admin;
 
           req.session.user = user;
