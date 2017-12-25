@@ -1,1 +1,1 @@
-# learn-webapp-sample
+该实例的教程请参考 [learn-webapp-guideline](https://github.com/xugy0926/learn-webapp-guideline)
