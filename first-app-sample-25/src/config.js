@@ -8,8 +8,8 @@ export default {
     host: 'smtp.qq.com',
     port: 465,
     auth: {
-      user: 'young_xu@qq.com',
-      pass: 'dzzbxxhswphubieg',
+      user: 'xx@qq.com',
+      pass: 'your_password',
     }
   },
   name: '我的社区',
