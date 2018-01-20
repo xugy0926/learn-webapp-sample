@@ -5,10 +5,10 @@ const db = mongoose.connect(config.mongodbUrl, {
   useMongoClient: true
 });
 
-db.on('error', function(err) {
+db.on('error', function (err) {
   console.log(err);
 });
 
-db.once('open', function() {
+db.once('open', function () {
   console.log('mongodb connect successed!')
 });
