@@ -105,7 +105,7 @@ router.post('/signin', function(req, res, next) {
         {
           _id: user._id,
           name: user.name,
-          isAdmin: user.loginname === config.admin,
+          isAdmin: user.name === config.admin,
           exp: moment().add('days', 30).valueOf(),
         },
         config.jwtSecret

@@ -26,4 +26,7 @@ router.post('/signup', user.signup);
 /* POST signin user */
 router.post('/signin', user.signin);
 
+/* GET active account */
+router.get('/activeAccount', user.activeAccount);
+
 export default router;

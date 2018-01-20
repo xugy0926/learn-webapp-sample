@@ -34,12 +34,26 @@ export const userRequired = (req, res, next) => {
     return;
   }
 
+  if (!req.user.active) {
+    let err = new Error('需要激活');
+    err.status = 403;
+    next(err);
+    return;
+  }
+
   next();
 };
 
 export const adminRequired = (req, res, next) => {
   if (!req.user) {
     let err = new Error('需要登录');
+    err.status = 403;
+    next(err);
+    return;
+  }
+
+  if (!req.user.active) {
+    let err = new Error('需要激活');
     err.status = 403;
     next(err);
     return;

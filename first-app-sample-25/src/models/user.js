@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   name: String,
-  pass: String
+  email: String,
+  pass: String,
+  active: Boolean
 });
 
 const UserModel = mongoose.model('User', UserSchema);
