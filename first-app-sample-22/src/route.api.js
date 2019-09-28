@@ -55,8 +55,8 @@ router.post('/posts', auth.adminRequired, function (req, res, next) {
 
 /* PATCH edit post */
 router.patch('/posts/:id', auth.adminRequired, function(req, res, next) {
-  const { id, title, content } = req.params;
-
+  const { id } = req.params;
+  const { title, content } = req.body;
   PostModel.findOneAndUpdate({ _id: id }, { title, content }, function(err) {
     if (err) {
       next(err);
