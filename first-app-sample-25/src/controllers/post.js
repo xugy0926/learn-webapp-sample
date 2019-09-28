@@ -41,8 +41,8 @@ export const create = function(req, res, next) {
 };
 
 export const update = function(req, res, next) {
-  const { id, title, content } = req.params;
-
+  const { id } = req.params;
+  const { title, content } = req.body;
   PostModel.findOneAndUpdate({ _id: id }, { title, content }, function(err) {
     if (err) {
       next(err);
