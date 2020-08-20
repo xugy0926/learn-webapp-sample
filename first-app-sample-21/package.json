@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "babel-cli": "^6.24.1",
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^5.0.0",
     "body-parser": "~1.17.1",
     "connect-mongo": "^2.0.0",
     "cookie-parser": "~1.4.3",
