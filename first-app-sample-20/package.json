@@ -7,7 +7,7 @@
     "auto-start": "./node_modules/.bin/node-supervisor node ./bin/www"
   },
   "dependencies": {
-    "bcrypt": "^1.0.3",
+    "bcrypt": "^5.0.0",
     "body-parser": "~1.17.1",
     "connect-mongo": "^2.0.0",
     "cookie-parser": "~1.4.3",
